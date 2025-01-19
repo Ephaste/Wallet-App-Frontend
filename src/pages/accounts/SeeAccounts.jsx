@@ -15,7 +15,7 @@ export const SeeAccounts = () => {
     const fetchAccounts = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get("http://localhost:150/api/accounts/getallaccounts", {
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/accounts/getallaccounts", {
           headers: {
             'Authorization': `Bearer ${token}`
           }

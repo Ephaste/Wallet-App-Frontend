@@ -17,7 +17,7 @@ function Dash() {
     const fetchAccounts = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get("http://localhost:150/api/accounts/getallaccounts", {  
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/accounts/getallaccounts", {  
           headers: { 'Authorization': `Bearer ${token}` }
         });
         setAccountsCount(response.data.length);
@@ -29,7 +29,7 @@ function Dash() {
     const fetchExpenses = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get("http://localhost:150/api/expenses/getallexpenses", {  // Changed to expenses API
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/expenses/getallexpenses", {  // Changed to expenses API
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const totalExpenses= response.data.reduce((sum, record) => sum + record.amount, 0);
@@ -55,7 +55,7 @@ function Dash() {
     const fetchIncome = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get("http://localhost:150/api/income/getallincome", {  // Changed to income API
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/income/getallincome", {  // Changed to income API
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const incomeCount = (response.data.length);

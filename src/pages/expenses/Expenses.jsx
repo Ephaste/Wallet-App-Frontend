@@ -15,7 +15,7 @@ export const Expenses = () => {
     const fetchExpenses = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get("http://localhost:150/api/expenses/getallexpenses", {
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/expenses/getallexpenses", {
           headers: {
             'Authorization': `Bearer ${token}`
           }

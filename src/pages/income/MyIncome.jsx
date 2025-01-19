@@ -17,7 +17,7 @@ const MyIncome = () => {
     const fetchIncomeData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get("http://localhost:150/api/income/getallincome", {
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/income/getallincome", {
           headers: {
             'Authorization': `Bearer ${token}`
           }

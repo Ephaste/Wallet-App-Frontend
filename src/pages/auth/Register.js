@@ -39,7 +39,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post("http://localhost:150/api/accounts/register", formData, {
+      await axios.post("https://wallet-app-backend-8.onrender.com/api/accounts/register", formData, {
         headers: {
           'Content-Type': 'application/json'
         }

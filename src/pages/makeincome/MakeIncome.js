@@ -27,7 +27,7 @@ const MakeIncome = () => {
         const decodedToken = jwtDecode(token); // Decode the token
         const userId = decodedToken.id;
 
-        const response = await axios.get(`http://localhost:150/api/accounts/${userId}`, {
+        const response = await axios.get(`https://wallet-app-backend-8.onrender.com/api/accounts/${userId}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -58,7 +58,7 @@ const MakeIncome = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:150/api/income/makeincome",
+        "https://wallet-app-backend-8.onrender.com/api/income/makeincome",
         formData,
         {
           headers: {

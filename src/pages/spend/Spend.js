@@ -29,7 +29,7 @@ const Spend = () => {
     const userId = decodedToken.id;
 
     try {
-      const response = await axios.get(`http://localhost:150/api/accounts/${userId}`, {
+      const response = await axios.get(`https://wallet-app-backend-8.onrender.com/api/accounts/${userId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setFormData((prevData) => ({
@@ -45,10 +45,10 @@ const Spend = () => {
     const token = localStorage.getItem('token');
 
     try {
-      const incomeResponse = await axios.get("http://localhost:150/api/income/gettotalincome", {
+      const incomeResponse = await axios.get("https://wallet-app-backend-8.onrender.com/api/income/gettotalincome", {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      const expenseResponse = await axios.get("http://localhost:150/api/expenses/gettotalexpenses", {
+      const expenseResponse = await axios.get("https://wallet-app-backend-8.onrender.com/api/expenses/gettotalexpenses", {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -84,7 +84,7 @@ const Spend = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:150/api/expenses/spend",
+        "https://wallet-app-backend-8.onrender.com/api/expenses/spend",
         expenseData,
         {
           headers: {
