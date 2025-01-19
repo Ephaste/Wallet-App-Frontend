@@ -23,7 +23,7 @@ const Login = () => {
     setErrorMessage(""); // Clear previous errors
   
     try {
-      const res = await axios.post("hhttps://wallet-app-backend-8.onrender.com/api/accounts/login", formData, {
+      const res = await axios.post("https://wallet-app-backend-8.onrender.com/api/accounts/login", formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -43,7 +43,8 @@ const Login = () => {
   
       if (error.response && error.response.data) {
         setErrorMessage(error.response.data.message || "Login failed.");
-      } else {
+      }
+       else {
         setErrorMessage("An unexpected error occurred. Please try again.");
       }
     }
