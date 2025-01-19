@@ -13,7 +13,7 @@ const SidebarAdmin = ({OpenSidebarToggle, OpenSidebar}) => {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    axios.get("http://localhost:150/api/accounts/logout")
+    axios.get("https://wallet-app-backend-8.onrender.com/api/accounts/logout")
       .then(res => {
         if (res.status === 200) {
           localStorage.removeItem('token');
