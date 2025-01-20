@@ -34,19 +34,17 @@ function App() {
           <Route path="/myincome" element={<MyIncome />} />
           <Route path="/accounts" element={<SeeAccounts />} />
           <Route path="/updateuser" element={<UserUpdate />} />
-        
-          <Route path="/spend" element={<Spend />} />
-          <Route path="/makeincome" element={<MakeIncome />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/spend" element={<Spend />} />
+            <Route path="/makeincome" element={<MakeIncome />} />
+          </Route>
           <Route path='/gettingcontacts' element ={<GettingContacts/>}/>
         </Route>
 
         <Route path="" element={<MemberLayout />}>
           <Route path="/dashboardmember" element={<DashboardMember />} />
     
-          <Route element={<PrivateRoutes />}>
-            <Route path="/spend" element={<Spend />} />
-            <Route path="/makeincome" element={<MakeIncome />} />
-          </Route>
+         
     
         </Route>
       </Routes>
