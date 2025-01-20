@@ -6,10 +6,10 @@ import { FcDebt } from "react-icons/fc";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 function Dash() {
-  const [accountsCount, setAccountsCount] = useState(0);  
-  const [expensesCount, setExpensesCount] = useState(0);  
+  const [accountsCount, setAccountsCount] = useState(0);
+  const [expensesCount, setExpensesCount] = useState(0);
   const [contactsCount, setContactsCount] = useState(0);
-  const [incomeAmount, setIncomeAmount] = useState(0);  
+  const [incomeAmount, setIncomeAmount] = useState(0);
   const [expenseAmount, setExpenseAmount] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -17,8 +17,8 @@ function Dash() {
     const fetchAccounts = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/accounts/getallaccounts", {  
-          headers: { 'Authorization': `Bearer ${token}` }
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/accounts/getallaccounts", {
+          headers: { 'Authorization': `Bearer ${token}` },
         });
         setAccountsCount(response.data.length);
       } catch (error) {
@@ -29,14 +29,12 @@ function Dash() {
     const fetchExpenses = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get("https://wallet-app-backend-8.onrender.com/expenses/getallexpenses", {  // Changed to expenses API
-          headers: { 'Authorization': `Bearer ${token}` }
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/expenses/gettotalexpenses", {
+          headers: { 'Authorization': `Bearer ${token}` },
         });
-        const totalExpenses= response.data.reduce((sum, record) => sum + record.amount, 0);
-        setExpensesCount(response.data.length);
-        setExpenseAmount(totalExpenses);
+        setExpenseAmount(response.data.totalExpenses || 0); // Set the total expenses amount
       } catch (error) {
-        console.error("Error fetching expenses data:", error);
+        console.error("Error fetching total expenses:", error);
       }
     };
 
@@ -44,7 +42,7 @@ function Dash() {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.get("http://localhost:2/api/contact/getall", {
-          headers: { 'Authorization': `Bearer ${token}` }
+          headers: { 'Authorization': `Bearer ${token}` },
         });
         setContactsCount(response.data.length);
       } catch (error) {
@@ -55,16 +53,12 @@ function Dash() {
     const fetchIncome = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/income/getallincome", {  // Changed to income API
-          headers: { 'Authorization': `Bearer ${token}` }
+        const response = await axios.get("https://wallet-app-backend-8.onrender.com/api/income/gettotalincome", {
+          headers: { 'Authorization': `Bearer ${token}` },
         });
-        const incomeCount = (response.data.length);
-        const totalIncome = response.data.reduce((sum, record) => sum + record.amount, 0);
-        //setExpensesCount(response.data.length);
-        setIncomeAmount(totalIncome);
-       // setIncomeAmount(incomeCount);
+        setIncomeAmount(response.data.totalIncome || 0);
       } catch (error) {
-        console.error("Error fetching income data:", error);
+        console.error("Error fetching total income:", error);
       }
     };
 
@@ -97,21 +91,21 @@ function Dash() {
       <div className='main-cards'>
         <div className='card'>
           <div className='card-inner'>
-            <h3>ACCOUNTS</h3>  {/* Changed from MEMBERS to ACCOUNTS */}
+            <h3>ACCOUNTS</h3>
             <BsPeopleFill className='card_icon' />
           </div>
           <h1>{accountsCount}</h1>
         </div>
         <div className='card'>
           <div className='card-inner'>
-            <h3>INCOME</h3>  {/* Changed from SAVINGS to INCOME */}
+            <h3>INCOME</h3>
             <MdSavings className='card_icon' />
           </div>
           <h1>{incomeAmount}</h1>
         </div>
         <div className='card'>
           <div className='card-inner'>
-            <h3>EXPENSES</h3>  {/* Changed from LOANS to EXPENSES */}
+            <h3>EXPENSES</h3>
             <FcDebt className='card_icon' />
           </div>
           <h1>{expenseAmount}</h1>
@@ -119,7 +113,9 @@ function Dash() {
         <div className='card'>
           <div className='card-inner'>
             <h3>INFO..</h3>
-           <a href='/gettingcontacts'> <BsFillBellFill className='card_icon' /></a>
+            <a href='/gettingcontacts'>
+              <BsFillBellFill className='card_icon' />
+            </a>
           </div>
           <h1>{contactsCount}</h1>
         </div>
@@ -127,7 +123,12 @@ function Dash() {
 
       <div className='charts'>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart width={500} height={300} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+          <BarChart
+            width={500}
+            height={300}
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
@@ -139,7 +140,12 @@ function Dash() {
         </ResponsiveContainer>
 
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart width={500} height={300} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+          <LineChart
+            width={500}
+            height={300}
+            data={data}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
