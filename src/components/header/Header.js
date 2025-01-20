@@ -105,10 +105,10 @@ const Header = () => {
               <NavLink to="/contact" className={activeLink}>Contact us</NavLink>
             </li>
             <li>
-              <NavLink to="/contribute" className={activeLink}>Income</NavLink>
+              <NavLink to="/makeincome" className={activeLink}>Income</NavLink>
             </li>
             <li>
-              <NavLink to="/applyloan" className={activeLink}>Expenses</NavLink>
+              <NavLink to="/spend" className={activeLink}>Expenses</NavLink>
             </li>
           </ul>
 
